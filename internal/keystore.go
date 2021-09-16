@@ -110,16 +110,11 @@ func (chm *ConcurrentHashMap) NFetchWorker() {
 		chm.mu.RLock()
 		data := chm.data[string(key)]
 		chm.mu.RUnlock()
-		//*(data.NFetch)--
+
 		if data.IsUsingNFetch {
 			chm.mu.Lock()
-			chm.data[string(key)].mu.Lock()
-			chm.mu.Unlock()
-
+			// TODO: Possible Bottleneck
 			*(chm.data[string(key)].NFetch)--
-
-			chm.mu.Lock()
-			chm.data[string(key)].mu.Unlock()
 			chm.mu.Unlock()
 		}
 	}
