@@ -110,12 +110,15 @@ func (chm *ConcurrentHashMap) NFetchWorker(id int, wg *sync.WaitGroup) {
 		key := <-NFetchWorkerPipe
 		chm.mu.RLock()
 		data := chm.data[string(key)]
+		isUsingNFetch := data.IsUsingNFetch
 		chm.mu.RUnlock()
 
-		if data.IsUsingNFetch {
+		if isUsingNFetch {
 			chm.mu.Lock()
 			// TODO: Possible Bottleneck
-			*(chm.data[string(key)].NFetch)--
+			if chm.data[string(key)].NFetch != nil {
+				*(chm.data[string(key)].NFetch)--
+			}
 			chm.mu.Unlock()
 		}
 	}
