@@ -2,6 +2,7 @@ package internal
 
 import (
 	"amnesia-db/constants"
+	"fmt"
 	"sync"
 	"time"
 )
@@ -25,7 +26,6 @@ func (chm *ConcurrentHashMap) Init() {
 }
 
 func (chm *ConcurrentHashMap) Insert(key Key, value Value, options Options) {
-	println("INSERT")
 	var (
 		nFetch      OptionValue
 		ttl         OptionValue
@@ -83,7 +83,6 @@ func CheckValueValidity(value Block) bool {
 }
 
 func (chm *ConcurrentHashMap) Get(key Key) Value {
-	println("GET")
 	chm.mu.RLock()
 	fetch, ok := chm.data[string(key)]
 	isValid := CheckValueValidity(fetch)
@@ -104,7 +103,9 @@ func (chm *ConcurrentHashMap) Get(key Key) Value {
 
 var NFetchWorkerPipe = make(chan Key)
 
-func (chm *ConcurrentHashMap) NFetchWorker() {
+func (chm *ConcurrentHashMap) NFetchWorker(id int, wg *sync.WaitGroup) {
+	fmt.Printf("Starting <> NFetchWorker #%d\n", id)
+	wg.Done()
 	for {
 		key := <-NFetchWorkerPipe
 		chm.mu.RLock()

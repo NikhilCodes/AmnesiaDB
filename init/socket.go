@@ -9,6 +9,7 @@ import (
 )
 
 func Socket() {
+	fmt.Print("Initializing TCP Listener...")
 	l, err := net.Listen("tcp4", ":"+strconv.Itoa(config.GetConfig().Port))
 	if err != nil {
 		fmt.Println(err)
@@ -23,6 +24,7 @@ func Socket() {
 		fmt.Println("CONNECTION__CLOSED")
 	}(l)
 
+	fmt.Println("DONE")
 	for {
 		c, err := l.Accept()
 		if err != nil {

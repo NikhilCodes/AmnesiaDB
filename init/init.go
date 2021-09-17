@@ -1,11 +1,20 @@
 package init
 
-import "amnesia-db/config"
+import (
+	"amnesia-db/config"
+	"fmt"
+	"sync"
+)
 
 func All() {
 	config.InitConfig()
 
 	KeyStore()
 	RandomSeed()
-	Socket()
+	go Socket()
+	fmt.Println("LISTENING...")
+
+	wg := sync.WaitGroup{}
+	wg.Add(1)
+	wg.Wait()
 }

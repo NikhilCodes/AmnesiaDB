@@ -127,7 +127,7 @@ func ParseFromString(qs string) Query {
 	var tokens = lvl1Tokenizer(qs)
 
 	var op OpCode
-	println(tokens)
+
 	if tokens[0] == constants.SET {
 		op = SET
 	} else if tokens[0] == constants.GET {

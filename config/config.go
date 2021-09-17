@@ -35,12 +35,14 @@ var (
 )
 
 func InitConfig() {
+	fmt.Print("Loading -> Config...")
 	config_, err := LoadConfig()
 	if err != nil {
 		log.Fatal("Cannot load loadConfig: ", err)
 	}
 
 	config = &config_
+	fmt.Println("DONE")
 }
 
 func GetConfig() *Config {
