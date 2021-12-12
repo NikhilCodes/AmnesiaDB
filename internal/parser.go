@@ -134,6 +134,8 @@ func ParseFromString(qs string) Query {
 		op = GET
 	} else if tokens[0] == constants.UPDATE {
 		op = UPDATE
+	} else {
+		op = -1
 	}
 
 	q.Op = op
