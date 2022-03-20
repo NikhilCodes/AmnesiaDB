@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  read_replica:
+    build: .
+    ports:
+      - ":4224"
+    restart: always
+
+  write_replica:
+    build: .
+    ports:
+      - "4223:4224"
+    restart: always
+
+  loadbalancer:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - write_replica
+      - read_replica
+    ports:
+      - "4224:4224"
+
+#  gateway:
+#    network_mode: bridge
+#    depends_on:
+#      - write_replica
+#      - read_replica
+#      - loadbalancer
+#    build: ./gateway
+#    ports:
+#      - "4422:4422"

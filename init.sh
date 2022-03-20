@@ -1,0 +1,1 @@
+docker compose up --build --force-recreate --scale read_replica=5 -d
