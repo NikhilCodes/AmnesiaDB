@@ -3,7 +3,7 @@ services:
   read_replica:
     build: .
     ports:
-      - ":4224"
+      - "2000-4000:4224"
     restart: always
 
   write_replica:

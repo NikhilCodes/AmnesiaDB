@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@amnesia-js/core": "^1.2.3",
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "node-cron": "^3.0.0",
     "tcp-port-used": "^1.0.2"

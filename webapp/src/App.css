@@ -1,0 +1,92 @@
+#root {
+  text-align: center;
+}
+
+.App {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.left-half {
+  min-width: 40vw;
+  height: 100vh;
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.right-half {
+  width: 60vw;
+  height: 100%;
+}
+
+.query {
+  width: calc(100% - 40px);
+  box-sizing: border-box;
+  padding: 0.5rem;
+  margin: 20px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.code {
+  font-size: 1.1rem;
+  font-family: monospace;
+  color: #61dafb;
+  background: rgba(0, 0, 0, 0.23);
+  padding: 0.6rem;
+  border-radius: 10px;
+  margin: 10px;
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 0.9em;
+  margin: 1em;
+}
+
+.small {
+  transform: scale(0.5);
+}
+
+.read-the-docs {
+  color: #888;
+}
